@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luna Hair Store</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #fff0f5;
+  margin: 0;
+  padding: 20px;
+  color: #4a3540;
+}
+.container {
+  max-width: 500px;
+  margin: auto;
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+h1 {
+  text-align: center;
+  color: #d46a91;
+}
+p {
+  text-align: center;
+}
+label {
+  display: block;
+  margin-top: 12px;
+}
+input, select, textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 6px;
+  border: 1px solid #e5b8cb;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 20px;
+  background: #d46a91;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+}
+button:hover {
+  background: #bd507a;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<h1>🌷 Luna Hair Store 🌷</h1>
+<p>ร้านขายผลิตภัณฑ์ดูแลเส้นผม</p>
+
+<form id="orderForm">
+
+<label>ชื่อผู้สั่งซื้อ</label>
+<input name="customer" required>
+
+<label>เบอร์โทรศัพท์</label>
+<input name="phone" required>
+
+<label>ที่อยู่จัดส่ง</label>
+<textarea name="address" required></textarea>
+
+<label>สินค้า</label>
+<select id="product" name="product" onchange="updatePrice()" required>
+<option value="">-- เลือกสินค้า --</option>
+<option value="แชมพู">แชมพู</option>
+<option value="ครีมนวดผม">ครีมนวดผม</option>
+<option value="เซรั่มบำรุงผม">เซรั่มบำรุงผม</option>
+</select>
+
+<label>รหัสสินค้า (SKU)</label>
+<input id="sku" name="sku" readonly>
+
+<label>ราคา (บาท)</label>
+<input id="price" name="price" readonly>
+
+<label>จำนวน</label>
+<input type="number" id="quantity" name="quantity"
+min="1" value="1" onchange="calculate()" required>
+
+<label>ยอดรวม (บาท)</label>
+<input id="total" name="total" readonly>
+
+<button type="submit">สั่งซื้อสินค้า</button>
+
+</form>
+<p id="result"></p>
+
+</div>
+
+<script>
+const products = {
+  "แชมพู": {sku: "LH001", price: 159},
+  "ครีมนวดผม": {sku: "LH002", price: 149},
+  "เซรั่มบำรุงผม": {sku: "LH003", price: 199}
+};
+
+function updatePrice() {
+  const product = document.getElementById("product").value;
+  if (!product) return;
+
+  document.getElementById("sku").value = products[product].sku;
+  document.getElementById("price").value = products[product].price;
+  calculate();
+}
+
+function calculate() {
+  const price = Number(document.getElementById("price").value || 0);
+  const quantity = Number(document.getElementById("quantity").value || 0);
+  document.getElementById("total").value = price * quantity;
+}
+
+document.getElementById("orderForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const data = Object.fromEntries(new FormData(this).entries());
+
+  document.getElementById("result").innerText =
+    "กำลังส่งคำสั่งซื้อ...";
+
+  fetch("ใส่_URL_WEB_APP_ตรงนี้", {
+    method: "POST",
+    body: JSON.stringify(data)
+  })
+  .then(response => response.text())
+  .then(result => {
+    document.getElementById("result").innerText =
+      "สั่งซื้อสำเร็จ ขอบคุณที่ใช้บริการ Luna Hair Store 🌷";
+    document.getElementById("orderForm").reset();
+    document.getElementById("sku").value = "";
+    document.getElementById("price").value = "";
+    document.getElementById("total").value = "";
+  })
+  .catch(error => {
+    document.getElementById("result").innerText =
+      "ส่งข้อมูลไม่สำเร็จ กรุณาลองใหม่";
+  });
+});
+</script>
+
+</body>
+</html>
