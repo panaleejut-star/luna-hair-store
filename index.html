@@ -4,154 +4,500 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Luna Hair Store</title>
+<title>Luna Hair Store | Beauty & Hair Care</title>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
+:root {
+  --pink: #e99ab5;
+  --darkpink: #c86e91;
+  --lightpink: #fff0f5;
+  --cream: #fffafd;
+  --text: #59434d;
+  --white: #ffffff;
+}
+
+* { box-sizing: border-box; }
+
 body {
-  font-family: Arial, sans-serif;
-  background: #fff0f5;
   margin: 0;
-  padding: 20px;
-  color: #4a3540;
+  font-family: 'Prompt', sans-serif;
+  background: var(--cream);
+  color: var(--text);
 }
-.container {
-  max-width: 500px;
-  margin: auto;
+
+header {
   background: white;
-  padding: 25px;
-  border-radius: 20px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  padding: 17px 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 15px #e9b6c522;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
-h1 {
-  text-align: center;
-  color: #d46a91;
+
+.logo {
+  font-family: 'Kanit', sans-serif;
+  font-size: 27px;
+  color: var(--darkpink);
+  font-weight: 600;
 }
-p {
-  text-align: center;
+
+.logo span { color: #8d6475; }
+
+nav {
+  display: flex;
+  gap: 25px;
+  align-items: center;
 }
-label {
-  display: block;
-  margin-top: 12px;
+
+nav a {
+  text-decoration: none;
+  color: var(--text);
+  font-size: 14px;
 }
-input, select, textarea {
-  width: 100%;
-  padding: 12px;
-  margin-top: 6px;
-  border: 1px solid #e5b8cb;
-  border-radius: 10px;
-  box-sizing: border-box;
-}
-button {
-  width: 100%;
-  padding: 14px;
-  margin-top: 20px;
-  background: #d46a91;
-  color: white;
+
+.cart-button, .pink-button {
+  background: var(--pink);
   border: none;
-  border-radius: 12px;
+  color: white;
+  padding: 11px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.cart-button:hover, .pink-button:hover {
+  background: var(--darkpink);
+}
+
+.hero {
+  background: linear-gradient(120deg, #ffe8f0, #fff5f8, #fce0eb);
+  padding: 75px 8%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  min-height: 340px;
+}
+
+.hero-content { max-width: 550px; }
+
+.hero h1 {
+  font-size: clamp(32px, 5vw, 48px);
+  line-height: 1.3;
+  color: #b96587;
+  margin: 10px 0;
+}
+
+.hero p {
+  line-height: 1.9;
+  color: #806674;
+}
+
+.hero-tag {
+  color: #c86e91;
+  letter-spacing: 3px;
+  font-size: 12px;
+}
+
+.hero-decoration {
+  font-size: 100px;
+  padding: 20px;
+}
+
+.section {
+  padding: 55px 7%;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.section-title h2 {
+  color: #bd6e8c;
+  font-size: 28px;
+  margin-bottom: 5px;
+}
+
+.section-title p {
+  font-size: 13px;
+  color: #a48b97;
+}
+
+.toolbar {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+}
+
+.search {
+  border: 1px solid #f0c9d8;
+  background: white;
+  padding: 12px 18px;
+  border-radius: 25px;
+  width: min(100%, 330px);
+  font-family: inherit;
+  outline: none;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 22px;
+}
+
+.product-card {
+  background: white;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px #e7b7c51c;
+  transition: .2s;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 9px 24px #e7b7c544;
+}
+
+.product-image {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  background: #fff0f5;
+}
+
+.product-info { padding: 17px; }
+
+.sku {
+  font-size: 11px;
+  color: #bd8b9f;
+}
+
+.product-info h3 {
   font-size: 16px;
+  margin: 6px 0;
+  color: #684b59;
+}
+
+.description {
+  font-size: 12px;
+  color: #a18c96;
+  min-height: 38px;
+}
+
+.price {
+  color: #c66e91;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 12px 0;
+}
+
+.stock {
+  font-size: 12px;
+  color: #8d9e87;
+  margin-bottom: 12px;
+}
+
+.add-button {
+  width: 100%;
+  background: #f6d4e0;
+  color: #a34e72;
+  border: none;
+  border-radius: 22px;
+  padding: 10px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.add-button:hover { background: #edb4ca; }
+
+.empty, .loading, .error {
+  text-align: center;
+  padding: 45px 15px;
+  color: #a78393;
+  grid-column: 1 / -1;
+}
+
+.about {
+  background: #fff0f5;
+  text-align: center;
+  padding: 55px 10%;
+  line-height: 2;
+}
+
+.about h2 { color: #bd6e8c; }
+
+footer {
+  background: #d98eaa;
+  color: white;
+  text-align: center;
+  padding: 27px 15px;
+  font-size: 13px;
+}
+
+/* Cart */
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #38232d77;
+  z-index: 20;
+}
+
+.overlay.show { display: block; }
+
+.cart-panel {
+  position: fixed;
+  right: -430px;
+  top: 0;
+  height: 100%;
+  width: min(400px, 100%);
+  background: white;
+  z-index: 21;
+  padding: 25px;
+  transition: .3s;
+  overflow-y: auto;
+}
+
+.cart-panel.show { right: 0; }
+
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close {
+  border: none;
+  background: none;
+  font-size: 25px;
+  cursor: pointer;
+  color: #bd6e8c;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  border-bottom: 1px solid #f4dce5;
+  padding: 15px 0;
+  font-size: 13px;
+}
+
+.qty button {
+  border: none;
+  background: #ffe7ef;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
   cursor: pointer;
 }
-button:hover {
-  background: #bd507a;
+
+.total {
+  font-size: 20px;
+  font-weight: 600;
+  color: #c66e91;
+  margin: 20px 0;
+}
+
+.checkout {
+  width: 100%;
+  margin-top: 10px;
+}
+
+@media(max-width:600px) {
+  header { padding: 13px 5%; }
+  nav a { display: none; }
+  .hero { padding: 45px 7%; }
+  .hero-decoration { font-size: 55px; }
+  .section { padding: 40px 5%; }
+  .products { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+  .product-image { height: 150px; }
+  .product-info { padding: 12px; }
 }
 </style>
 </head>
 
 <body>
-<div class="container">
 
-<h1>🌷 Luna Hair Store 🌷</h1>
-<p>ร้านขายผลิตภัณฑ์ดูแลเส้นผม</p>
+<header>
+  <div class="logo">Luna <span>Hair Store</span></div>
+  <nav>
+    <a href="#home">หน้าแรก</a>
+    <a href="#products">สินค้า</a>
+    <a href="#about">เกี่ยวกับเรา</a>
+    <button class="cart-button" onclick="openCart()">
+      🛍️ ตะกร้า (<span id="cartCount">0</span>)
+    </button>
+  </nav>
+</header>
 
-<form id="orderForm">
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-tag">WELCOME TO LUNA HAIR STORE</div>
+    <h1>เสน่ห์ของเส้นผม<br>เริ่มต้นที่การดูแล</h1>
+    <p>
+      เติมเต็มความสวยให้เส้นผมของคุณ
+      ด้วยผลิตภัณฑ์ดูแลเส้นผมที่คัดสรรมาเพื่อคุณ
+      ให้ทุกวันเป็นวันผมสวย ✨
+    </p>
+    <a href="#products">
+      <button class="pink-button">เลือกชมสินค้า ♡</button>
+    </a>
+  </div>
+  <div class="hero-decoration">🌸🎀</div>
+</section>
 
-<label>ชื่อผู้สั่งซื้อ</label>
-<input name="customer" required>
+<section class="section" id="products">
+  <div class="section-title">
+    <h2>Our Products ♡</h2>
+    <p>ผลิตภัณฑ์ดูแลเส้นผมจาก Luna Hair Store</p>
+  </div>
 
-<label>เบอร์โทรศัพท์</label>
-<input name="phone" required>
+  <div class="toolbar">
+    <input class="search" id="search"
+      placeholder="ค้นหาชื่อสินค้าหรือ SKU..."
+      oninput="renderProducts()">
+    <button class="pink-button" onclick="loadProducts()">
+      ↻ โหลดสินค้าใหม่
+    </button>
+  </div>
 
-<label>ที่อยู่จัดส่ง</label>
-<textarea name="address" required></textarea>
+  <div class="products" id="productsGrid">
+    <div class="loading">กำลังโหลดสินค้า... 🌸</div>
+  </div>
+</section>
 
-<label>สินค้า</label>
-<select id="product" name="product" onchange="updatePrice()" required>
-<option value="">-- เลือกสินค้า --</option>
-<option value="แชมพู">แชมพู</option>
-<option value="ครีมนวดผม">ครีมนวดผม</option>
-<option value="เซรั่มบำรุงผม">เซรั่มบำรุงผม</option>
-</select>
+<section class="about" id="about">
+  <h2>About Luna Hair Store 🌷</h2>
+  <p>
+    Luna Hair Store ร้านผลิตภัณฑ์ดูแลเส้นผม
+    ที่ใส่ใจในทุกขั้นตอนการเลือกสรรสินค้า
+    เพราะเราเชื่อว่าผมสวยเริ่มต้นจากการดูแลที่ดี
+    ขอบคุณที่ให้เราเป็นส่วนหนึ่งในการดูแลคุณ ♡
+  </p>
+</section>
 
-<label>รหัสสินค้า (SKU)</label>
-<input id="sku" name="sku" readonly>
+<footer>
+  <div style="font-size:20px;margin-bottom:8px">
+    Luna Hair Store ♡
+  </div>
+  Beauty begins with healthy hair.
+  <br>© 2026 Luna Hair Store. All rights reserved.
+</footer>
 
-<label>ราคา (บาท)</label>
-<input id="price" name="price" readonly>
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
 
-<label>จำนวน</label>
-<input type="number" id="quantity" name="quantity"
-min="1" value="1" onchange="calculate()" required>
+<aside class="cart-panel" id="cartPanel">
+  <div class="cart-header">
+    <h2>🛍️ ตะกร้าสินค้า</h2>
+    <button class="close" onclick="closeCart()">×</button>
+  </div>
 
-<label>ยอดรวม (บาท)</label>
-<input id="total" name="total" readonly>
-
-<button type="submit">สั่งซื้อสินค้า</button>
-
-</form>
-<p id="result"></p>
-
-</div>
+  <div id="cartItems"></div>
+  <div class="total" id="cartTotal">รวม ฿0</div>
+  <button class="pink-button checkout" onclick="checkout()">
+    สรุปรายการสั่งซื้อ
+  </button>
+</aside>
 
 <script>
-const products = {
-  "แชมพู": {sku: "LH001", price: 159},
-  "ครีมนวดผม": {sku: "LH002", price: 149},
-  "เซรั่มบำรุงผม": {sku: "LH003", price: 199}
-};
+// Google Sheets CSV URL
+const SHEET_URL =
+'https://docs.google.com/spreadsheets/d/e/2PACX-1vQYH-0WYPpHqNlOOXzLQigtpOTy6rOXubCt8NL9JZSnTsiO6b_Zt0XbGDfiqEap3E0iggWsiGHsK0Ho/pub?gid=1353498070&single=true&output=csv';
 
-function updatePrice() {
-  const product = document.getElementById("product").value;
-  if (!product) return;
+let products = [];
+let cart = [];
 
-  document.getElementById("sku").value = products[product].sku;
-  document.getElementById("price").value = products[product].price;
-  calculate();
+// อ่าน CSV รองรับเครื่องหมาย comma และเครื่องหมายคำพูด
+function parseCSV(text) {
+  const rows = [];
+  let row = [];
+  let cell = '';
+  let quoted = false;
+
+  for (let i = 0; i < text.length; i++) {
+    const char = text[i];
+    const next = text[i + 1];
+
+    if (char === '"' && quoted && next === '"') {
+      cell += '"';
+      i++;
+    } else if (char === '"') {
+      quoted = !quoted;
+    } else if (char === ',' && !quoted) {
+      row.push(cell.trim());
+      cell = '';
+    } else if ((char === '\n' || char === '\r') && !quoted) {
+      if (char === '\r' && next === '\n') i++;
+      row.push(cell.trim());
+      if (row.some(v => v !== '')) rows.push(row);
+      row = [];
+      cell = '';
+    } else {
+      cell += char;
+    }
+  }
+
+  row.push(cell.trim());
+  if (row.some(v => v !== '')) rows.push(row);
+
+  return rows;
 }
 
-function calculate() {
-  const price = Number(document.getElementById("price").value || 0);
-  const quantity = Number(document.getElementById("quantity").value || 0);
-  document.getElementById("total").value = price * quantity;
+function cleanNumber(value) {
+  return Number(String(value || '0').replace(/[^\d.-]/g, '')) || 0;
 }
 
-document.getElementById("orderForm").addEventListener("submit", function(e) {
-  e.preventDefault();
+async function loadProducts() {
+  const grid = document.getElementById('productsGrid');
+  grid.innerHTML = '<div class="loading">กำลังโหลดสินค้า... 🌸</div>';
 
-  const data = Object.fromEntries(new FormData(this).entries());
+  try {
+    const response = await fetch(SHEET_URL + '&t=' + Date.now());
 
-  document.getElementById("result").innerText =
-    "กำลังส่งคำสั่งซื้อ...";
+    if (!response.ok) throw new Error('โหลดข้อมูลไม่สำเร็จ');
 
-  fetch("ใส่_URL_WEB_APP_ตรงนี้", {
-    method: "POST",
-    body: JSON.stringify(data)
-  })
-  .then(response => response.text())
-  .then(result => {
-    document.getElementById("result").innerText =
-      "สั่งซื้อสำเร็จ ขอบคุณที่ใช้บริการ Luna Hair Store 🌷";
-    document.getElementById("orderForm").reset();
-    document.getElementById("sku").value = "";
-    document.getElementById("price").value = "";
-    document.getElementById("total").value = "";
-  })
-  .catch(error => {
-    document.getElementById("result").innerText =
-      "ส่งข้อมูลไม่สำเร็จ กรุณาลองใหม่";
-  });
-});
-</script>
+    const csv = await response.text();
+    const rows = parseCSV(csv);
 
-</body>
-</html>
+    if (rows.length < 2) {
+      throw new Error('ยังไม่มีข้อมูลสินค้าใน Google Sheets');
+    }
+
+    const headers = rows[0].map(h =>
+      h.replace(/^\uFEFF/, '').trim().toLowerCase()
+    );
+
+    const getIndex = name => headers.indexOf(name.toLowerCase());
+
+    const skuIndex = getIndex('SKU');
+    const nameIndex = getIndex('Product');
+    const descIndex = getIndex('Description');
+    const priceIndex = getIndex('Price');
+    const stockIndex = getIndex('Stock');
+    const imageIndex = getIndex('Image URL');
+
+    if ([skuIndex, nameIndex, priceIndex].some(i => i < 0)) {
+      throw new Error('กรุณาตรวจสอบหัวตาราง SKU, Product และ Price');
+    }
+
+    products = rows.slice(1)
+      .filter(r => r[nameIndex])
+      .map(r => ({
+        sku: r[skuIndex] || '',
+        name: r[nameIndex] || '',
+        description: r[descIndex] || 'ผลิตภัณฑ์ดูแลเส้นผม',
+        price: cleanNumber(r[priceIndex]),
+        stock: stockIndex >= 0 ? cleanNumber(r[stockIndex]) : 0,
+        image: imageIndex >= 0 ? r[imageIndex] : ''
+      }));
+
+    rend
